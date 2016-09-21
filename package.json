@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "dotenv": "^2.0.0",
     "schedule": "^0.1.0",
     "sockjs": "^0.3.17"
   }

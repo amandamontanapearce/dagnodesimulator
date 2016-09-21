@@ -20,9 +20,15 @@ chat.on('connection', function(conn) {
         id1percentComplete = Math.round(id1percentComplete + 2.7);
         id2percentComplete = Math.round(id2percentComplete + 1.3);
         id3percentComplete += 2;
-        if (id1percentComplete > 15) {
+        if (id1percentComplete > 9) {
           error ='"crimson"';
-          id1percentComplete = 15;
+          id1percentComplete = 9;
+        }
+        if (id2percentComplete > 100) {
+          id2percentComplete = 100;
+        }
+        if (id3percentComplete > 100) {
+          id3percentComplete = 100;
         }
         conn.write('{"NodeId": "1", "percentComplete": 0, "parent": "null", "status":"skyblue", "children": [{"NodeId": "2", "percentComplete": 0, "parent": "Top Level", "status": "skyblue", "children": [{ "NodeId": "4", "percentComplete": '+ id2percentComplete +', "parent": "Level 2: A", "status": "darkseagreen"}, { "NodeId": "5", "percentComplete": '+ id3percentComplete + ', "parent": "Level 2: A", "status": "darkseagreen"}]}, { "NodeId": "3", "percentComplete": ' + id1percentComplete + ', "parent": "Top Level", "value": 10, "status": '+ error + '}]}');
         connections.push(conn);

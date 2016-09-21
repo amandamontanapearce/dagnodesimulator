@@ -42,4 +42,4 @@ var server = http.createServer();
 chat.installHandlers(server, {
     prefix: '/chat'
 });
-server.listen(3000, '0.0.0.0');
+server.listen(process.env.PORT || 3000, '0.0.0.0');

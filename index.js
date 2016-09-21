@@ -12,16 +12,18 @@ chat.on('connection', function(conn) {
   var id2percentComplete = 0;
   var id3percentComplete = 0;
   var error = '"darkseagreen"';
+  var errorStatus = '"IN_PROGRESS"'
     //connections.push(conn);
     // var number = connections.length;
     // conn.write("Welcome, User " + number);
-    conn.write('{"NodeId": "1", "percentComplete": 0, "parent": "null", "status":"skyblue", "children": [{"NodeId": "2", "percentComplete": 0, "parent": "Top Level", "status": "skyblue", "children": [{ "NodeId": "4", "percentComplete": '+ id2percentComplete +', "parent": "Level 2: A", "status": "darkseagreen"}, { "NodeId": "5", "percentComplete": '+ id1percentComplete + ', "parent": "Level 2: A", "status": "darkseagreen"}]}, { "NodeId": "3", "percentComplete": ' + id1percentComplete + ', "parent": "Top Level", "value": 10, "status": '+ error + '}]}');
+    conn.write('{"NodeId": "1", "percentComplete": 0, "parent": "null", "colorStatus":"skyblue", "children": [{"NodeId": "2", "percentComplete": 0, "parent": "Top Level", "colorStatus": "skyblue", "children": [{ "NodeId": "4", "percentComplete": '+ id2percentComplete +', "parent": "Level 2: A", "colorStatus": "darkseagreen"}, { "NodeId": "5", "percentComplete": '+ id1percentComplete + ', "parent": "Level 2: A", "colorStatus": "darkseagreen"}]}, { "NodeId": "3", "percentComplete": ' + id1percentComplete + ', "parent": "Top Level", "value": 10, "colorStatus": '+ error + '}]}');
     every('3s').do(function() {
         id1percentComplete = Math.round(id1percentComplete + 2.7);
         id2percentComplete = Math.round(id2percentComplete + 1.3);
         id3percentComplete += 2;
         if (id1percentComplete > 9) {
           error ='"crimson"';
+          errorStatus = '"ERROR"'
           id1percentComplete = 9;
         };
         if (id2percentComplete > 100) {
@@ -30,7 +32,7 @@ chat.on('connection', function(conn) {
         if (id3percentComplete > 100) {
           id3percentComplete = 100;
         };
-        conn.write('{"NodeId": "1", "percentComplete": 0, "parent": "null", "status":"skyblue", "children": [{"NodeId": "2", "percentComplete": 0, "parent": "Top Level", "status": "skyblue", "children": [{ "NodeId": "4", "percentComplete": '+ id2percentComplete +', "parent": "Level 2: A", "status": "darkseagreen"}, { "NodeId": "5", "percentComplete": '+ id3percentComplete + ', "parent": "Level 2: A", "status": "darkseagreen"}]}, { "NodeId": "3", "percentComplete": ' + id1percentComplete + ', "parent": "Top Level", "value": 10, "status": '+ error + '}]}');
+        conn.write('{"NodeId": "1", "status": "QUEUED", "percentComplete": 0, "parent": "null", "colorStatus":"skyblue", "children": [{"NodeId": "2", "status": "QUEUED", "percentComplete": 0, "parent": "Top Level", "colorStatus": "skyblue", "children": [{ "NodeId": "4", "status": "IN_PROGRESS", "percentComplete": '+ id2percentComplete +', "parent": "Level 2: A", "colorStatus": "darkseagreen"}, { "NodeId": "5", "status": "IN_PROGRESS", "percentComplete": '+ id3percentComplete + ', "parent": "Level 2: A", "colorStatus": "darkseagreen"}]}, { "NodeId": "3", "status": ' + errorStatus + ',"percentComplete": ' + id1percentComplete + ', "parent": "Top Level", "value": 10, "colorStatus": '+ error + '}]}');
         connections.push(conn);
     });
 

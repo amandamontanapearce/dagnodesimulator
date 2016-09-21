@@ -35,6 +35,9 @@ chat.on('connection', function(conn) {
             //connections[ii].write("User " + number + " has disconnected");
             connections[ii].write("disconnected");
         }
+        var id1percentComplete = 0;
+        var id2percentComplete = 0;
+        var id3percentComplete = 0;
     });
 });
 

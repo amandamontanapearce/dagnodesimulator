@@ -21,10 +21,10 @@ chat.on('connection', function(conn) {
         id1percentComplete = Math.round(id1percentComplete + 2.7);
         id2percentComplete = Math.round(id2percentComplete + 1.3);
         id3percentComplete += 2;
-        if (id1percentComplete > 9) {
+        if (id1percentComplete > 15) {
           error ='"crimson"';
           errorStatus = '"ERROR"'
-          id1percentComplete = 9;
+          id1percentComplete = 15;
         };
         if (id2percentComplete > 100) {
           id2percentComplete = 100;
